@@ -1,10 +1,8 @@
 # SignalR.RavenDB
 using raven.client 5.4
-using Owin;
-using Microsoft.Owin;
-using Microsoft.AspNet.SignalR;
-using SignalR.RavenDB;
-using System;
+
+## Usage
+```csharp
 
 [assembly: OwinStartup(typeof(MVC4Web.Startup))]
 
@@ -24,4 +22,5 @@ namespace MVC4Web
         }
     }
 }
+```
 change database name in startup class , database name  as first argument and databaseUrl as second argument of ravendb.

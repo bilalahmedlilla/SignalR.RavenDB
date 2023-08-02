@@ -44,6 +44,7 @@ namespace SignalR.RavenDB
 
             _observer = new RavenMessageObserver(this);
             this.ConnectWithRetry();
+            //this.Subscribe();
         }
 
         protected override void Dispose(bool disposing)
@@ -214,7 +215,16 @@ namespace SignalR.RavenDB
 
             //  _subscription = changes.ForDocumentsStartingWith(docIdPrefix).Subscribe(_observer);
         }
+        private void Subscribe( )
+        {
+            this.Unsubscribe();
 
+            var docIdPrefix = string.Format("{0}s/", typeof(RavenMessage).Name);
+            //_trace.TraceInformation("Subscribing to documents starting with '{0}'.", docIdPrefix);
+            _subscription = _documentStore.Changes().ForAllDocuments().Subscribe(_observer);
+
+            //  _subscription = changes.ForDocumentsStartingWith(docIdPrefix).Subscribe(_observer);
+        }
         private void Unsubscribe()
         {
             var subscription = _subscription;

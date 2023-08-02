@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.33529.622
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalR.RavenDB", "src\SignalR.RavenDB\SignalR.RavenDB.csproj", "{B3379D24-927D-4BF5-AF77-17F18360CD20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC 4 web", "MVC 4 web\MVC 4 web.csproj", "{052938F1-BB15-4271-851B-211B9171227B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{B3379D24-927D-4BF5-AF77-17F18360CD20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3379D24-927D-4BF5-AF77-17F18360CD20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3379D24-927D-4BF5-AF77-17F18360CD20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{052938F1-BB15-4271-851B-211B9171227B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{052938F1-BB15-4271-851B-211B9171227B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{052938F1-BB15-4271-851B-211B9171227B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{052938F1-BB15-4271-851B-211B9171227B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

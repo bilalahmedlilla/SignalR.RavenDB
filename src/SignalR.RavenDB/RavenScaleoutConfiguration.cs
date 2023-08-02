@@ -11,6 +11,8 @@ namespace SignalR.RavenDB
 
         public RavenScaleoutConfiguration(string connectionStringNameOrUrl)
             : this(CreateConnectionFactory(connectionStringNameOrUrl)) { }
+        public RavenScaleoutConfiguration(string databaseName, string url)
+           : this(CreateConnectionFactory(databaseName, url)) { }
 
         public RavenScaleoutConfiguration(Func<IDocumentStore> documentStoreFactory)
         {
@@ -31,7 +33,24 @@ namespace SignalR.RavenDB
         {
             get { return _documentStoreFactory; }
         }
+        private static Func<IDocumentStore> CreateConnectionFactory(string databasename, string url)
+        {
+            if (string.IsNullOrWhiteSpace(url))
+                throw new ArgumentNullException("connectionStringNameOrUrl");
 
+            try
+            {
+
+                return CreateConnectionFactoryFromDbNameNUrl(databasename, url);
+
+                var uri = new Uri(url, UriKind.Absolute);
+                return () => new DocumentStore { Database = databasename, Urls = new[] { uri.AbsoluteUri } };
+            }
+            catch (UriFormatException)
+            {
+                return CreateConnectionFactoryFromDbNameNUrl(databasename, url);
+            }
+        }
         private static Func<IDocumentStore> CreateConnectionFactory(string connectionStringNameOrUrl)
         {
             if (string.IsNullOrWhiteSpace(connectionStringNameOrUrl))
@@ -54,6 +73,11 @@ namespace SignalR.RavenDB
         private static Func<IDocumentStore> CreateConnectionFactoryFromConnectionStringName(string connectionStringName)
         {
             return () => new DocumentStore { Database = connectionStringName };
+        }
+
+        private static Func<IDocumentStore> CreateConnectionFactoryFromDbNameNUrl(string databaseName, string Url)
+        {
+            return () => new DocumentStore { Database = databaseName, Urls = new[] { Url } };
         }
     }
 }
